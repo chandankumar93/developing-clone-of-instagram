@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden p-8">
+
+        <!-- Login Form -->
+        <div id="login-form" class="transition-opacity duration-500 ease-in-out">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
+            <form id="login" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="login-email">Email
+                        Address</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="email" id="login-email" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="login-password">Password</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="password" id="login-password" placeholder="********" required>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox"
+                            class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" id="show-forgot-password" class="font-medium text-purple-600 hover:text-purple-500">Forgot password?</a>
+                    </div>
+                </div>
+                <div id="login-error" class="text-red-500 text-sm font-semibold text-center hidden mb-2"></div>
+                <button type="submit"
+                    class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 transition-colors shadow-md">
+                    Sign In
+                </button>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Don't have an account?
+                <a href="#" id="show-signup"
+                    class="font-medium text-purple-600 hover:text-purple-500 transition-colors">Sign up</a>
+            </p>
+        </div>
+
+        <!-- Sign-up Form -->
+        <div id="signup-form" class="hidden transition-opacity duration-500 ease-in-out">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
+            <form id="signup" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="signup-name">Full Name</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="text" id="signup-name" placeholder="John Doe" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="signup-email">Email
+                        Address</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="email" id="signup-email" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="signup-password">Password</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="password" id="signup-password" placeholder="********" required>
+                </div>
+                <div id="signup-error" class="text-red-500 text-sm font-semibold text-center hidden mb-2"></div>
+                <button type="submit"
+                    class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 transition-colors shadow-md">
+                    Sign Up
+                </button>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Already have an account?
+                <a href="#" id="show-login"
+                    class="font-medium text-purple-600 hover:text-purple-500 transition-colors">Sign in</a>
+            </p>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-password-form" class="hidden transition-opacity duration-500 ease-in-out">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Reset Password</h2>
+            <form id="forgot-password" class="space-y-4">
+                <!-- Step 1: Request OTP -->
+                <div id="fp-step-1">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="reset-email">Email Address</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="email" id="reset-email" placeholder="you@example.com" required>
+                    <button type="button" id="fp-btn-1"
+                        class="w-full mt-4 bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-colors shadow-md">
+                        Send OTP
+                    </button>
+                </div>
+
+                <!-- Step 2: Verify OTP -->
+                <div id="fp-step-2" class="hidden">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="reset-otp">Enter 6-digit OTP</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all tracking-widest text-center text-lg"
+                        type="text" id="reset-otp" placeholder="123456">
+                    <button type="button" id="fp-btn-2"
+                        class="w-full mt-4 bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-colors shadow-md">
+                        Verify OTP
+                    </button>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div id="fp-step-3" class="hidden">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" for="new-password">New Password</label>
+                    <input
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
+                        type="password" id="new-password" placeholder="********">
+                    <button type="submit" id="fp-btn-3"
+                        class="w-full mt-4 bg-purple-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-colors shadow-md">
+                        Reset Password
+                    </button>
+                </div>
+
+                <div id="reset-error" class="text-red-500 text-sm font-semibold text-center hidden mb-2 mt-4"></div>
+                <div id="reset-success" class="text-green-500 text-sm font-semibold text-center hidden mb-2 mt-4"></div>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Remember your password?
+                <a href="#" id="back-to-login"
+                    class="font-medium text-purple-600 hover:text-purple-500 transition-colors">Back to login</a>
+            </p>
+        </div>
+
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>
